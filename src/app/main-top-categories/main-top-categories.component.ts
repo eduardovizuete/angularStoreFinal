@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { appConstants } from '../util/app-constants';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
 
@@ -10,17 +11,25 @@ import { CategoryService } from '../services/category.service';
   providers: [CategoryService]
 })
 export class MainTopCategoriesComponent implements OnInit {
-
   categories: Category[];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
-  	this.getCategories();
+    this.getCategories();
   }
 
   getCategories(): void {
-  	this.categoryService.getCategories().then(categories => this.categories = categories);
-  }
+    const sort = appConstants.FIELD_SORT
+      + appConstants.OP_EQUAL
+      + appConstants.FIELD_NAME;
+    const limit = appConstants.FIELD_LIMIT
+      + appConstants.OP_EQUAL
+      + appConstants.LIMIT_TOP_CATEGORIES;
+    const filter = sort + appConstants.OP_AMP + limit;
 
+    this.categoryService
+      .getCategories(filter)
+      .then(categories => this.categories = categories);
+  }
 }

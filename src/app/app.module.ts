@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpModule }    from '@angular/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -21,6 +22,7 @@ import { MainTopCategoriesComponent } from './main-top-categories/main-top-categ
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],
