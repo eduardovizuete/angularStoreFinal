@@ -5,31 +5,29 @@ import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
 
 @Component({
-  selector: 'app-main-top-categories',
-  templateUrl: './main-top-categories.component.html',
-  styleUrls: ['./main-top-categories.component.scss'],
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
   providers: [CategoryService]
 })
-export class MainTopCategoriesComponent implements OnInit {
+export class CategoryComponent implements OnInit {
   categories: Category[];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
-    this.getTopCategories();
+    this.getAllCategories();
   }
 
-  getTopCategories(): void {
+  getAllCategories(): void {
     const sort = appConstants.FIELD_SORT
       + appConstants.OP_EQUAL
       + appConstants.FIELD_NAME;
-    const limit = appConstants.FIELD_LIMIT
-      + appConstants.OP_EQUAL
-      + appConstants.LIMIT_TOP_CATEGORIES;
-    const filter = sort + appConstants.OP_AMP + limit;
+    const filter = sort;
 
     this.categoryService
       .getCategories(filter)
       .then(categories => this.categories = categories);
   }
+
 }

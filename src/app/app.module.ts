@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpModule }    from '@angular/http';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -10,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { MainDetailComponent } from './main-detail/main-detail.component';
 import { MainTopCategoriesComponent } from './main-top-categories/main-top-categories.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,23 @@ import { MainTopCategoriesComponent } from './main-top-categories/main-top-categ
     FooterComponent,
     MainComponent,
     MainDetailComponent,
-    MainTopCategoriesComponent
+    MainTopCategoriesComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: MainComponent
+      },
+      {
+        path: 'categories',
+        component: CategoryComponent
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent],
