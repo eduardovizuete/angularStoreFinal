@@ -41,6 +41,10 @@ import { ProductComponent } from './product/product.component';
       {
         path: 'products',
         component: ProductComponent
+      },
+      {
+        path: 'products/:category',
+        component: ProductComponent
       }
     ])
   ],

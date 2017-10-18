@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
+
+import 'rxjs/add/operator/switchMap';
 
 import { appConstants } from '../util/app-constants';
 import { Product } from '../models/product';
@@ -13,10 +17,29 @@ import { ProductService } from '../services/product.service';
 export class ProductComponent implements OnInit {
   products: Product[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute,
+              private location: Location
+            ) {}
 
   ngOnInit() {
-    this.getAllProducts();
+    let idCategory: string;
+    this.route.params.subscribe( params => console.log('params: ', params) );
+    this.route.queryParams.subscribe( queries => console.log('queries: ', queries) );
+
+    this.route.params
+    .filter(params => params.category)
+    .subscribe(params => {
+      idCategory = params.category;
+    });
+
+    console.log('Id Category: ', idCategory);
+
+    if (!idCategory) {
+      this.getAllProducts();
+    } else {
+      this.getProductsByIdCategory(idCategory);
+    }
   }
 
   getAllProducts(): void {
@@ -24,6 +47,22 @@ export class ProductComponent implements OnInit {
       + appConstants.OP_EQUAL
       + appConstants.FIELD_NAME;
     const filter = sort;
+
+    this.productService
+      .getProducts(filter)
+      .then(products => this.products = products);
+  }
+
+  getProductsByIdCategory(category: String): void {
+    const sort = appConstants.FIELD_SORT
+      + appConstants.OP_EQUAL
+      + appConstants.FIELD_NAME;
+    const catParam = appConstants.FIELD_CATEGORY
+      + appConstants.OP_EQUAL
+      + category;
+    const filter = sort
+      + appConstants.OP_AMP
+      + catParam;
 
     this.productService
       .getProducts(filter)
