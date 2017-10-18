@@ -8,5 +8,6 @@ export const environment = {
   apiBase: '/',
   apiEndpoint: 'http://localhost:3000',
   apiVersion: 'apiv1',
-  apiCategoryUrl: 'category'
+  apiCategoryUrl: 'category',
+  apiProductUrl: 'product'
 };

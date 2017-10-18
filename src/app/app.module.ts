@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { MainDetailComponent } from './main-detail/main-detail.component';
 import { MainTopCategoriesComponent } from './main-top-categories/main-top-categories.component';
 import { CategoryComponent } from './category/category.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CategoryComponent } from './category/category.component';
     MainComponent,
     MainDetailComponent,
     MainTopCategoriesComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,10 @@ import { CategoryComponent } from './category/category.component';
       {
         path: 'categories',
         component: CategoryComponent
+      },
+      {
+        path: 'products',
+        component: ProductComponent
       }
     ])
   ],
