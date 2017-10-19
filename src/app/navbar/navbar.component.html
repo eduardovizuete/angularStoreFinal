@@ -1,19 +1,19 @@
 <!--Navbar-->
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
   <!-- Navbar brand -->
-  <logo><a class="navbar-brand" routerLink="/">Keepcoding Store</a></logo>
+  <logo><a class="navbar-brand" [routerLink]="['home']">Keepcoding Store</a></logo>
   <!-- Collapsible content -->
   <links>
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbRippleRadius routerLink="/" >Home<span class="sr-only">(current)</span></a>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link waves-light" mdbRippleRadius [routerLink]="['home']" >Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbRippleRadius routerLink="/categories">Categories</a>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link waves-light" mdbRippleRadius [routerLink]="['categories']">Categories</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbRippleRadius routerLink="/products">Products</a>
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link waves-light" mdbRippleRadius [routerLink]="['products']">Products</a>
       </li>
       <!-- Dropdown -->
       <li class="nav-item dropdown" dropdown>

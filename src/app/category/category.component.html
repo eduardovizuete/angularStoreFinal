@@ -12,7 +12,7 @@
           <!--Card image-->
           <div class="view overlay hm-white-slight">
             <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(75).jpg" class="img-fluid" alt="">
-            <a href="#">
+            <a [routerLink]="['/products']" [queryParams]="{ category: category._id}">
               <div class="mask"></div>
             </a>
           </div>
@@ -22,7 +22,7 @@
             <h4 class="card-title">{{category.name}}</h4>
             <!--Text-->
             <p class="card-text">Select the best products in this category.</p>
-            <a [routerLink]="['/products', category._id]" class="btn btn-indigo">Get Products</a>
+            <a [routerLink]="['/products']" [queryParams]="{ category: category._id}" class="btn btn-indigo">Get Products</a>
           </div>
         </div>
         <!--/.Card-->

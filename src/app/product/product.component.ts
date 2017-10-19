@@ -19,15 +19,15 @@ export class ProductComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private location: Location
-            ) {}
+              private location: Location) {
+    this.route.params.subscribe( params => console.log('params: ', params) );
+    this.route.queryParams.subscribe( queries => console.log('queries: ', queries) );
+  }
 
   ngOnInit() {
     let idCategory: string;
-    this.route.params.subscribe( params => console.log('params: ', params) );
-    this.route.queryParams.subscribe( queries => console.log('queries: ', queries) );
 
-    this.route.params
+    this.route.queryParams
     .filter(params => params.category)
     .subscribe(params => {
       idCategory = params.category;
