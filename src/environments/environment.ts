@@ -9,5 +9,6 @@ export const environment = {
   apiEndpoint: 'http://localhost:3000',
   apiVersion: 'apiv1',
   apiCategoryUrl: 'category',
-  apiProductUrl: 'product'
+  apiProductUrl: 'product',
+  apiUserRegisterUrl: 'userRegister',
 };

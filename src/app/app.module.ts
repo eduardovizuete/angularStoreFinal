@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -14,6 +15,7 @@ import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { AppRoutingModule } from './app-routing.module';
     MainDetailComponent,
     MainTopCategoriesComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     MDBBootstrapModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
