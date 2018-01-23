@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Http } from '@angular/http';
-import { User } from '../models/user';
 import { errorHandler } from '@angular/platform-browser/src/browser';
+
+import { User } from '../models/user';
+import { AlertService } from './alert.service';
 
 @Injectable()
 export class UserRegisterService {
@@ -13,7 +15,9 @@ export class UserRegisterService {
   + environment.apiBase
   + environment.apiUserRegisterUrl;
 
-  constructor(private http: Http) { }
+  constructor (
+    private http: Http,
+    private alertService: AlertService) { }
 
   sendUserRegister(user: User): Promise<User> {
     console.log('User: ' + user);
@@ -35,5 +39,4 @@ export class UserRegisterService {
     //console.log('UserRegisterService an error occurred', error);
     return Promise.reject(error.message || error);
   }
-
 }
