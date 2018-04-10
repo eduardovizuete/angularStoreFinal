@@ -36,7 +36,7 @@ export class UserRegisterService {
       // backend error
       console.log('UserRegisterService an error occurred backend side', error);
     }
-    //console.log('UserRegisterService an error occurred', error);
+    // console.log('UserRegisterService an error occurred', error);
     return Promise.reject(error.message || error);
   }
 }

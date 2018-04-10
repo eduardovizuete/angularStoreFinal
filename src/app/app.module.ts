@@ -18,6 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './services/alert.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AlertService } from './services/alert.service';
     CategoryComponent,
     ProductComponent,
     UserRegisterComponent,
-    AlertComponent
+    AlertComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { AlertService } from './services/alert.service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [AlertService],
+  providers: [AlertService, LoginService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

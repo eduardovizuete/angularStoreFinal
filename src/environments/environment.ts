@@ -11,4 +11,5 @@ export const environment = {
   apiCategoryUrl: 'category',
   apiProductUrl: 'product',
   apiUserRegisterUrl: 'userRegister',
+  apiUserLoginUrl: 'login'
 };
