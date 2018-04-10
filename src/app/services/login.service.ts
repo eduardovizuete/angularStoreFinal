@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { AlertService } from './alert.service';
 import { User } from '../models/user';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class LoginService {
@@ -15,7 +16,8 @@ export class LoginService {
   + environment.apiUserLoginUrl;
 
   constructor(private http: Http,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private authService: AuthService) { }
 
     sendUserLogin(user: User): Promise<User> {
       console.log('User: ' + user);
@@ -24,7 +26,7 @@ export class LoginService {
         .toPromise()
         .then(
           response => {
-            console.log('LoginService localStorage.setItem: ', response.json().token);
+            this.authService.saveToken(response.json().token);
             localStorage.setItem('token', response.json().token);
             return response.json().newData as User;
           })
