@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Http } from '@angular/http';
 import { errorHandler } from '@angular/platform-browser/src/browser';
 
 import { User } from '../models/user';
 import { AlertService } from './alert.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserRegisterService {
@@ -16,19 +17,18 @@ export class UserRegisterService {
   + environment.apiUserRegisterUrl;
 
   constructor (
-    private http: Http,
+    private http: HttpClient,
     private alertService: AlertService) { }
 
-  sendUserRegister(user: User): Promise<User> {
+  sendUserRegister(user: User): Observable<User> {
     console.log('User: ' + user);
     return this.http
       .post(this.userRegisterURL, user)
-      .toPromise()
-      .then(response => response.json().newData as User)
+      .map(response => response['newData'] as User)
       .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<any> {
     if (error instanceof Error) {
       // client side or network error
       console.log('UserRegisterService an error occurred client side', error);
@@ -37,6 +37,6 @@ export class UserRegisterService {
       console.log('UserRegisterService an error occurred backend side', error);
     }
     // console.log('UserRegisterService an error occurred', error);
-    return Promise.reject(error.message || error);
+    return Observable.throw(error.message || error);
   }
 }

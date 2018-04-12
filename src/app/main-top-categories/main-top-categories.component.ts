@@ -30,6 +30,7 @@ export class MainTopCategoriesComponent implements OnInit {
 
     this.categoryService
       .getCategories(filter)
-      .then(categories => this.categories = categories);
+      .map(categories => this.categories = categories)
+      .subscribe();
   }
 }

@@ -27,18 +27,29 @@ export class LoginComponent implements OnInit {
   post(formulario: FormGroup) {
     this.user = formulario.value as User;
     console.log(this.user);
+    // this.userLoginService.sendUserLogin(this.user)
+    //   .map(
+    //     result => {
+    //       this.alertService.putMessage('Login successful', AlertService.ALERT_SUCCESS, true);
+    //       this.route.navigate(['/home']);
+    //     })
+    //   .catch(
+    //     error => {
+    //       this.alertService.putMessage('Login error', AlertService.ALERT_ERROR, false);
+    //       console.log('LoginComponent an error occurred', error);
+    //     }
+    //   );
     this.userLoginService.sendUserLogin(this.user)
-      .then(
-        result => {
-          this.alertService.putMessage('Login successful', AlertService.ALERT_SUCCESS, true);
-          this.route.navigate(['/home']);
-        })
-      .catch(
-        error => {
-          this.alertService.putMessage('Login error', AlertService.ALERT_ERROR, false);
-          console.log('LoginComponent an error occurred', error);
-        }
-      );
+    .subscribe(
+      data => {
+        this.alertService.putMessage('Login successful', AlertService.ALERT_SUCCESS, true);
+        this.route.navigate(['/home']);
+      },
+      error => {
+        this.alertService.putMessage('Login error', AlertService.ALERT_ERROR, false);
+        console.log('LoginComponent an error occurred', error);
+      }
+    );
   }
 
 }

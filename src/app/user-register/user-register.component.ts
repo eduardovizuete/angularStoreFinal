@@ -28,12 +28,11 @@ export class UserRegisterComponent implements OnInit {
     this.user = formulario.value as User;
     console.log(this.user);
     this.userRegisterService.sendUserRegister(this.user)
-      .then(
-        result => {
+      .subscribe(
+        data => {
           this.alertService.putMessage('Registration successful', AlertService.ALERT_SUCCESS, true);
           this.route.navigate(['/home']);
-        })
-      .catch(
+        },
         error => {
           this.alertService.putMessage('Registration error', AlertService.ALERT_ERROR, false);
           console.log('UserRegisterComponent an error occurred', error);

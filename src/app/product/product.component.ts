@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
 
     this.productService
       .getProducts(filter)
-      .then(products => this.products = products);
+      .subscribe(products => this.products = products);
   }
 
   getProductsByIdCategory(category: String): void {
@@ -66,7 +66,7 @@ export class ProductComponent implements OnInit {
 
     this.productService
       .getProducts(filter)
-      .then(products => this.products = products);
+      .subscribe(products => this.products = products);
   }
 
 }
